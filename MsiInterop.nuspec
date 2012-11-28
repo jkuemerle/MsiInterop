@@ -1,0 +1,22 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>MsiInterop</id>
+    <version>1.0.0.0</version>
+    <title>MsiInterop</title>
+    <authors>Ian Mariano</authors>
+    <owners>Joe Kuemerle</owners>
+    <licenseUrl>http://opensource.org/licenses/LGPL-2.1</licenseUrl>
+    <projectUrl>https://jkuemerle@bitbucket.org/jkuemerle/codefreud</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Code analysis using Project Roslyn</description>
+    <releaseNotes>Initial </releaseNotes>
+    <copyright>Copyright 2012</copyright>
+    <tags>Windows Installer MSI Interop</tags>
+  </metadata>
+  <files>
+	<file src="MsiInterop.cs.pp" target="Content" />
+	<file src="tools\install.ps1" target="Tools" />
+	<file src="tools\uninstall.ps1" target="Tools" />
+  </files>
+</package>
