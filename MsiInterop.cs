@@ -26,7 +26,7 @@ namespace	WindowsInstaller
 	using	System.Security;
 	using	System.Security.Permissions;
 	using	System.Text;
-	using	System.Windows.Forms;
+	//using	System.Windows.Forms;
 
 	#region	Constants
 	/// <summary>
@@ -2075,7 +2075,7 @@ namespace	WindowsInstaller
 	/// <remarks>
 	/// The <c>messageType</c> parameter specifies a combination of one message box style, one message box icon type, one default button, and one installation message type.
 	/// </remarks>
-	internal delegate int	MsiInstallUIHandler(IntPtr context,
+    internal delegate int MsiInstallUIHandler(Int32 context,
 		uint messageType, [MarshalAs(UnmanagedType.LPTStr)] string message);
 	#endregion	Delegates
 
@@ -2188,7 +2188,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB)]
-		extern static public MsiError	MsiCloseHandle(IntPtr handle);
+        extern static public MsiError MsiCloseHandle(Int32 handle);
 
 		/// <summary>The <c>MsiCollectUserInfo</c> function obtains and stores the user information and product ID from an installation wizard.</summary>
 		/// <param name="product">Specifies the product code of the product for which the user information is collected.</param>
@@ -2402,7 +2402,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiGetFeatureInfo(IntPtr productHandle,
+        extern static public MsiError MsiGetFeatureInfo(Int32 productHandle,
 			string feature, MsiInstallFeatureAttribute attributes,
 			StringBuilder title, ref uint titleSize, string help, ref uint helpSize);
 
@@ -2522,7 +2522,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiGetProductProperty(IntPtr productHandle,
+        extern static public MsiError MsiGetProductProperty(Int32 productHandle,
 			string property, StringBuilder value, ref uint valueSize);
 
 		/// <summary>The <c>MsiGetShortcutTarget</c> function examines a shortcut and returns its product, feature name, and component if available.</summary>
@@ -2638,7 +2638,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiOpenPackage(string path, out IntPtr handle);
+        extern static public MsiError MsiOpenPackage(string path, out Int32 handle);
 
 		/// <summary>The <c>MsiOpenPackageEx</c> function opens a package for use with functions that access the product database. The <see cref="MsiCloseHandle"/> function must be called with the handle when the handle is no longer needed.</summary>
 		/// <param name="path">Specifies the path to the package.</param>
@@ -2654,7 +2654,7 @@ namespace	WindowsInstaller
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
 		extern static public MsiError	MsiOpenPackageEx(string path, MsiOpenPackageFlags options,
-			out IntPtr handle);
+            out Int32 handle);
 
 		/// <summary>The <c>MsiOpenProduct</c> function opens a product for use with the functions that access the product database. The <see cref="MsiCloseHandle"/> function must be called with the handle when the handle is no longer needed.</summary>
 		/// <param name="product">Specifies the product code of the product to be opened.</param>
@@ -2668,7 +2668,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiOpenProduct(string product, out IntPtr handle);
+        extern static public MsiError MsiOpenProduct(string product, out Int32 handle);
 
 		/// <summary>
 		/// <para>The <c>MsiProvideAssembly</c> function returns the full path to a Windows Installer component containing an assembly. The function prompts for a source and performs any necessary installation. <c>MsiProvideAssembly</c> increments the usage count for the feature.</para>
@@ -2822,7 +2822,7 @@ namespace	WindowsInstaller
 		extern static public MsiInstallUIHandler	MsiSetExternalUI(
 			[MarshalAs(UnmanagedType.FunctionPtr)]
 			MsiInstallUIHandler handler, MsiInstallLogMode filter,
-			IntPtr context);
+            Int32 context);
 
 		/// <summary>The <c>MsiSetInternalUI</c> function enables the installer's internal user interface. Then this user interface is used for all subsequent calls to user-interface-generating installer functions in this process.</summary>
 		/// <param name="level">Specifies the level of complexity of the user interface.</param>
@@ -2831,7 +2831,7 @@ namespace	WindowsInstaller
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
 		extern static public MsiInstallUILevel	MsiSetInternalUI(MsiInstallUILevel level,
-			ref IntPtr parentWindow);
+			ref Int32 parentWindow);
 
 		/// <summary>The <c>MsiSourceListAddSource</c> function adds to the list of valid network sources in the source list.</summary>
 		/// <param name="product">Specifies the product code.</param>
@@ -2929,7 +2929,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB)]
-		extern static public IntPtr	MsiCreateRecord(uint count);
+        extern static public Int32 MsiCreateRecord(uint count);
 
 		/// <summary>The <c>MsiCreateTransformSummaryInfo</c> function creates summary information of an existing transform to include validation and error conditions. Execution of this function sets the error record, accessible through <see cref="MsiGetLastErrorRecord"/>.</summary>
 		/// <param name="database">Handle to the database that contains the new database Summary Information.</param>
@@ -2946,8 +2946,8 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiCreateTransformSummaryInfo(IntPtr database,
-			IntPtr databaseRef, string transformFile, MsiTransformError errorConditions,
+        extern static public MsiError MsiCreateTransformSummaryInfo(Int32 database,
+            Int32 databaseRef, string transformFile, MsiTransformError errorConditions,
 			MsiValidationFlag validation);
 
 		/// <summary>The <c>MsiDatabaseApplyTransform</c> function applies a transform to a database.</summary>
@@ -2963,7 +2963,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiDatabaseApplyTransform(IntPtr database,
+        extern static public MsiError MsiDatabaseApplyTransform(Int32 database,
 			string transformFile, MsiTransformError errorConditions);
 
 		/// <summary>The <c>MsiDatabaseCommit</c> function commits changes to a database.</summary>
@@ -2976,7 +2976,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiDatabaseCommit(IntPtr database);
+        extern static public MsiError MsiDatabaseCommit(Int32 database);
 
 		/// <summary>The <c>MsiDatabaseExport</c> function exports an installer table from an open database to a text archive file.</summary>
 		/// <param name="database">Handle to the database obtained from <see cref="MsiOpenDatabase"/>.</param>
@@ -2992,7 +2992,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiDatabaseExport(IntPtr database,
+        extern static public MsiError MsiDatabaseExport(Int32 database,
 			string table, string folder, string fileName);
 
 		/// <summary>The <c>MsiDatabaseGenerateTransform</c> function generates a transform file of differences between two databases. A transform is a way of recording changes to a database without altering the original database. You can also use <c>MsiDatabaseGenerateTransform</c> to test whether two databases are identical without creating a transform.</summary>
@@ -3012,8 +3012,8 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiDatabaseGenerateTransform(IntPtr database,
-			IntPtr databaseRef, string transformFile, int reserved1, int reserved2);
+        extern static public MsiError MsiDatabaseGenerateTransform(Int32 database,
+            Int32 databaseRef, string transformFile, int reserved1, int reserved2);
 
 		/// <summary>The <c>MsiDatabaseGetPrimaryKeys</c> function returns a record containing the names of all the primary key columns for a specified table. This function returns a handle that should be closed using <see cref="MsiCloseHandle"/>.</summary>
 		/// <param name="database">Handle to the database.</param>
@@ -3027,8 +3027,8 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiDatabaseGetPrimaryKeys(IntPtr database,
-			string table, out IntPtr record);
+        extern static public MsiError MsiDatabaseGetPrimaryKeys(Int32 database,
+            string table, out Int32 record);
 
 		/// <summary>The <c>MsiDatabaseImport</c> function imports an installer text archive table into an open database.</summary>
 		/// <param name="database">Handle to the database obtained from <see cref="MsiOpenDatabase"/>.</param>
@@ -3043,7 +3043,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiDatabaseImport(IntPtr database,
+        extern static public MsiError MsiDatabaseImport(Int32 database,
 			string folder, string fileName);
 
 		/// <summary>The <c>MsiDatabaseIsTablePersistent</c> function returns an enumeration describing the state of a particular table.</summary>
@@ -3051,7 +3051,7 @@ namespace	WindowsInstaller
 		/// <param name="table">Specifies the name of the relevant table.</param>
 		/// <returns>The <see cref="MsiCondition"/> of the table.</returns>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiCondition	MsiDatabaseIsTablePersistent(IntPtr database,
+        extern static public MsiCondition MsiDatabaseIsTablePersistent(Int32 database,
 			string table);
 
 		/// <summary>The <c>MsiDatabaseMerge</c> function merges two databases together, allowing duplicate rows.</summary>
@@ -3067,8 +3067,8 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiDatabaseMerge(IntPtr database,
-			IntPtr merge, string table);
+        extern static public MsiError MsiDatabaseMerge(Int32 database,
+            Int32 merge, string table);
 
 		/// <summary>The <c>MsiDatabaseOpenView</c> function prepares a database query and creates a view object. This function returns a handle that should be closed using <see cref="MsiCloseHandle"/>.</summary>
 		/// <param name="database">Handle to the database to which you want to open a view object.</param>
@@ -3081,8 +3081,8 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiDatabaseOpenView(IntPtr database,
-			string query, out IntPtr view);
+        extern static public MsiError MsiDatabaseOpenView(Int32 database,
+            string query, out Int32 view);
 
 		/// <summary>The MsiDoAction function executes a built-in action, custom action, or user-interface wizard action.</summary>
 		/// <param name="database">Handle to the installation provided to a DLL custom action or obtained through <see cref="MsiOpenPackage"/>, <see cref="MsiOpenPackageEx"/>, or <see cref="MsiOpenProduct"/>. </param>
@@ -3101,7 +3101,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiDoAction(IntPtr database, string action);
+        extern static public MsiError MsiDoAction(Int32 database, string action);
 
 		/// <summary>The <c>MsiEnableUIPreview</c> function enables preview mode of the user interface to facilitate authoring of user-interface dialog boxes. This function returns a handle that should be closed using <see cref="MsiCloseHandle"/>.</summary>
 		/// <param name="database">Handle to the database.</param>
@@ -3114,8 +3114,8 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiEnableUIPreview(IntPtr database,
-			out IntPtr preview);
+        extern static public MsiError MsiEnableUIPreview(Int32 database,
+            out Int32 preview);
 
 		/// <summary>The <c>MsiEnumComponentCosts</c> function enumerates the disk-space per drive required to install a component. This information is needed to display the disk-space cost required for all drives in the user interface. The returned disk-space costs are expressed in multiples of 512 bytes.</summary>
 		/// <param name="install">Handle to the installation provided to a DLL custom action or obtained through <see cref="MsiOpenPackage"/>, <see cref="MsiOpenPackageEx"/>, or <see cref="MsiOpenProduct"/>.</param>
@@ -3138,7 +3138,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiEnumComponentCosts(IntPtr install,
+        extern static public MsiError MsiEnumComponentCosts(Int32 install,
 			string component, uint index, MsiInstallState state, string drive,
 			ref uint driveSize, out int cost, out int tempCost);
 
@@ -3148,7 +3148,7 @@ namespace	WindowsInstaller
 		/// <returns>The <see cref="MsiCondition"/>.</returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiCondition	MsiEvaluateCondition(IntPtr install,
+        extern static public MsiCondition MsiEvaluateCondition(Int32 install,
 			string condition);
 
 		/// <summary>The <c>MsiFormatRecord</c> function formats record field data and properties using a format string.</summary>
@@ -3164,7 +3164,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiFormatRecord(IntPtr install, IntPtr record,
+        extern static public MsiError MsiFormatRecord(Int32 install, Int32 record,
 			StringBuilder result, ref uint resultSize);
 
 		/// <summary>The <c>MsiGetActiveDatabase</c> function returns the active database for the installation. This function returns a read-only handle that should be closed using <see cref="MsiCloseHandle"/>.</summary>
@@ -3172,7 +3172,7 @@ namespace	WindowsInstaller
 		/// <returns>If the function succeeds, it returns a read-only handle to the database currently in use by the installer. If the function fails, the function returns <c>IntPtr.Zero</c>.</returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public IntPtr	MsiGetActiveDatabase(IntPtr install);
+        extern static public Int32 MsiGetActiveDatabase(Int32 install);
 
 		/// <summary>The <c>MsiGetComponentState</c> function obtains the state of a component.</summary>
 		/// <param name="install">Handle to the installation provided to a DLL custom action or obtained through <see cref="MsiOpenPackage"/>, <see cref="MsiOpenPackageEx"/>, or <see cref="MsiOpenProduct"/>.</param>
@@ -3186,14 +3186,14 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiGetComponentState(IntPtr install,
+        extern static public MsiError MsiGetComponentState(Int32 install,
 			string component, out MsiInstallState state, out MsiInstallState action);
 
 		/// <summary>The <c>MsiGetDatabaseState</c> function returns the state of the database.</summary>
 		/// <param name="database">Handle to the database obtained from <see cref="MsiOpenDatabase"/>.</param>
 		/// <returns>The <see cref="MsiDbState"/>.</returns>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiDbState	MsiGetDatabaseState(IntPtr database);
+        extern static public MsiDbState MsiGetDatabaseState(Int32 database);
 
 		/// <summary>The <c>MsiGetFeatureCost</c> function returns the disk space required by a feature and its selected children and parent features.</summary>
 		/// <param name="install">Handle to the installation provided to a DLL custom action or obtained through <see cref="MsiOpenPackage"/>, <see cref="MsiOpenPackageEx"/>, or <see cref="MsiOpenProduct"/>.</param>
@@ -3211,7 +3211,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiGetFeatureCost(IntPtr install, string feature,
+        extern static public MsiError MsiGetFeatureCost(Int32 install, string feature,
 			MsiCostTree costTree, MsiInstallState state, out int cost);
 
 		/// <summary>The <c>MsiGetFeatureState</c> function gets the requested state of a feature.</summary>
@@ -3226,7 +3226,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiGetFeatureState(IntPtr install,
+        extern static public MsiError MsiGetFeatureState(Int32 install,
 			string feature, out MsiInstallState state, out MsiInstallState action);
 
 		/// <summary>The <c>MsiGetFeatureValidStates</c> function returns a valid installation state.</summary>
@@ -3243,20 +3243,20 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiGetFeatureValidStates(IntPtr install,
+        extern static public MsiError MsiGetFeatureValidStates(Int32 install,
 			string feature, out MsiFeatureInstallState state);
 
 		/// <summary>The <c>MsiGetLanguage</c> function returns the numeric language of the installation that is currently running.</summary>
 		/// <param name="install">Handle to the installation provided to a DLL custom action or obtained through <see cref="MsiOpenPackage"/>, <see cref="MsiOpenPackageEx"/>, or <see cref="MsiOpenProduct"/>.</param>
 		/// <returns>If the function succeeds, the return value is the numeric LANGID for the install.  Can be <see cref="MsiError.InvalidHandle"/> if the function fails, or zero if the installation is not running.</returns>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public UInt16	MsiGetLanguage(IntPtr install);
+        extern static public UInt16 MsiGetLanguage(Int32 install);
 
 		/// <summary>The <c>MsiGetLastErrorRecord</c> function returns the error record that was last returned for the calling process. This function returns a handle that should be closed using <see cref="MsiCloseHandle"/>.</summary>
 		/// <returns>A handle to the error record. If the last function was successful, <c>MsiGetLastErrorRecord</c> returns an <c>IntPtr.Zero</c>.</returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public IntPtr	MsiGetLastErrorRecord();
+        extern static public Int32 MsiGetLastErrorRecord();
 
 		/// <summary>The <c>MsiGetMode</c> function is used to determine whether the installer is currently running in a specified mode.</summary>
 		/// <param name="install">Handle to the installation provided to a DLL custom action or obtained through <see cref="MsiOpenPackage"/>, <see cref="MsiOpenPackageEx"/>, or <see cref="MsiOpenProduct"/>.</param>
@@ -3264,7 +3264,7 @@ namespace	WindowsInstaller
 		/// <returns><c>true</c> if the mode matches requested,</returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public bool	MsiGetMode(IntPtr install, MsiRunMode mode);
+        extern static public bool MsiGetMode(Int32 install, MsiRunMode mode);
 
 		/// <summary>The MsiGetProperty function gets the value for an installer property.</summary>
 		/// <param name="install">Handle to the installation provided to a DLL custom action or obtained through <see cref="MsiOpenPackage"/>, <see cref="MsiOpenPackageEx"/>, or <see cref="MsiOpenProduct"/>.</param>
@@ -3279,7 +3279,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiGetProperty(IntPtr install, string name,
+        extern static public MsiError MsiGetProperty(Int32 install, string name,
 			StringBuilder value, ref uint valueSize);
 
 		/// <summary>The <c>MsiGetSourcePath</c> function returns the full source path for a folder in the Directory table.</summary>
@@ -3296,7 +3296,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiGetSourcePath(IntPtr install, string folder,
+        extern static public MsiError MsiGetSourcePath(Int32 install, string folder,
 			StringBuilder path, ref uint pathSize);
 
 		/// <summary>The <c>MsiGetSummaryInformation</c> function obtains a handle to the _SummaryInformation stream for an installer database. This function returns a handle that should be closed using <see cref="MsiCloseHandle"/>.</summary>
@@ -3312,8 +3312,8 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiGetSummaryInformation(IntPtr install,
-			string path, uint updateCount, out IntPtr summaryInfo);
+        extern static public MsiError MsiGetSummaryInformation(Int32 install,
+            string path, uint updateCount, out Int32 summaryInfo);
 
 		/// <summary>The <c>MsiGetTargetPath</c> function returns the full target path for a folder in the Directory table.</summary>
 		/// <param name="install">Handle to the installation provided to a DLL custom action or obtained through <see cref="MsiOpenPackage"/>, <see cref="MsiOpenPackageEx"/>, or <see cref="MsiOpenProduct"/>.</param>
@@ -3329,7 +3329,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiGetTargetPath(IntPtr install, string folder,
+        extern static public MsiError MsiGetTargetPath(Int32 install, string folder,
 			StringBuilder path, ref uint pathSize);
 
 		/// <summary>The <c>MsiOpenDatabase</c> function opens a database file for data access. This function returns a handle that should be closed using <see cref="MsiCloseHandle"/>.</summary>
@@ -3341,7 +3341,7 @@ namespace	WindowsInstaller
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
 		extern static public MsiError	MsiOpenDatabase(string path, MsiDbPersistMode persist,
-			out IntPtr handle);
+            out Int32 handle);
 
 		/// <summary>The <c>MsiPreviewBillboard</c> function displays a billboard with the host control in the displayed dialog box.</summary>
 		/// <param name="preview">Handle to the preview.</param>
@@ -3355,7 +3355,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiPreviewBillboard(IntPtr preview,
+        extern static public MsiError MsiPreviewBillboard(Int32 preview,
 			string name, string billboard);
 
 		/// <summary>The <c>MsiPreviewDialog</c> function displays a dialog box as modeless and inactive.</summary>
@@ -3373,7 +3373,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiPreviewDialog(IntPtr preview,
+        extern static public MsiError MsiPreviewDialog(Int32 preview,
 			string dialog);
 
 		/// <summary>The <c>MsiProcessMessage</c> function sends an error record to the installer for processing.</summary>
@@ -3387,8 +3387,8 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public int	MsiProcessMessage(IntPtr install,
-			MsiInstallMessage type, IntPtr record);
+        extern static public int MsiProcessMessage(Int32 install,
+            MsiInstallMessage type, Int32 record);
 
 		/// <summary>The <c>MsiRecordClearData</c> function sets all fields in a record to <c>null</c>.</summary>
 		/// <param name="record">Handle to the record.</param>
@@ -3398,7 +3398,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiRecordClearData(IntPtr record);
+        extern static public MsiError MsiRecordClearData(Int32 record);
 
 		/// <summary>The <c>MsiRecordDataSize</c> function returns the length of a record field. The count does not include the terminating null character.</summary>
 		/// <param name="record">Handle to the record.</param>
@@ -3411,14 +3411,14 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public uint	MsiRecordDataSize(IntPtr record, uint field);
+        extern static public uint MsiRecordDataSize(Int32 record, uint field);
 
 		/// <summary>The <c>MsiRecordGetFieldCount</c> function returns the number of fields in a record.</summary>
 		/// <param name="record">Handle to the record.</param>
 		/// <returns>The count returned by the <c>MsiRecordGetFieldCount</c> parameter does not include field 0. Read access to fields beyond this count returns null values. Write access fails.</returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public uint	MsiRecordGetFieldCount(IntPtr record);
+        extern static public uint MsiRecordGetFieldCount(Int32 record);
 
 		/// <summary>The <c>MsiRecordGetInteger</c> function returns the integer value from a record field.</summary>
 		/// <param name="record">Handle to the record.</param>
@@ -3426,7 +3426,7 @@ namespace	WindowsInstaller
 		/// <returns>The MsiRecordGetInteger function returns <see cref="MsiNullInteger"/> if the field is null or if the field is a string that cannot be converted to an integer.</returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public int	MsiRecordGetInteger(IntPtr record, uint field);
+        extern static public int MsiRecordGetInteger(Int32 record, uint field);
 
 		/// <summary>The <c>MsiRecordGetString</c> function returns the string value of a record field.</summary>
 		/// <param name="record">Handle to the record.</param>
@@ -3441,7 +3441,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiRecordGetString(IntPtr record, uint field,
+        extern static public MsiError MsiRecordGetString(Int32 record, uint field,
 			StringBuilder value, ref uint valueSize);
 
 		/// <summary>The <c>MsiRecordIsNull</c> function reports whether a record field is <c>null</c>.</summary>
@@ -3450,7 +3450,7 @@ namespace	WindowsInstaller
 		/// <returns><c>true</c>, if the function succeeded and the field is null or the field does not exist; otherwise, The function succeeded and the field is not null or the record handle is invalid.</returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public bool	MsiRecordIsNull(IntPtr record, uint field);
+        extern static public bool MsiRecordIsNull(Int32 record, uint field);
 
 		/// <summary>The <c>MsiRecordReadStream</c> function reads bytes from a record stream field into a buffer.</summary>
 		/// <param name="record">Handle to the record.</param>
@@ -3465,7 +3465,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiRecordReadStream(IntPtr record, uint field,
+        extern static public MsiError MsiRecordReadStream(Int32 record, uint field,
 			StringBuilder buffer, ref uint bufferSize);
 
 		/// <summary>The MsiRecordSetInteger function sets a record field to an integer field.</summary>
@@ -3480,7 +3480,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiRecordSetInteger(IntPtr record, uint field,
+        extern static public MsiError MsiRecordSetInteger(Int32 record, uint field,
 			int value);
 
 		/// <summary>The <c>MsiRecordSetStream</c> function sets a record stream field from a file. Stream data cannot be inserted into temporary fields.</summary>
@@ -3496,7 +3496,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiRecordSetStream(IntPtr record, uint field,
+        extern static public MsiError MsiRecordSetStream(Int32 record, uint field,
 			string path);
 
 		/// <summary>The <c>MsiRecordSetString</c> function copies a string into the designated field.</summary>
@@ -3510,7 +3510,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiRecordSetString(IntPtr record, uint field,
+        extern static public MsiError MsiRecordSetString(Int32 record, uint field,
 			string value);
 
 		/// <summary>The <c>MsiSequence</c> function executes another action sequence, as described in the specified table.</summary>
@@ -3530,7 +3530,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiSequence(IntPtr install, string table,
+        extern static public MsiError MsiSequence(Int32 install, string table,
 			int mode);
 
 		/// <summary>The <c>MsiSetComponentState</c> function sets a component to the requested state.</summary>
@@ -3546,7 +3546,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiSetComponentState(IntPtr install, string component,
+        extern static public MsiError MsiSetComponentState(Int32 install, string component,
 			MsiInstallState state);
 
 		/// <summary>The <c>MsiSetFeatureAttributes</c> function can modify the default attributes of a feature at runtime. Note that the default attributes of features are authored in the Attributes column of the Feature table.</summary>
@@ -3561,7 +3561,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiSetFeatureAttributes(IntPtr install,
+        extern static public MsiError MsiSetFeatureAttributes(Int32 install,
 			string feature, MsiInstallFeatureAttribute attributes);
 
 		/// <summary>The <c>	MsiSetFeatureState</c> function sets a feature to a specified state.</summary>
@@ -3577,7 +3577,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiSetFeatureState(IntPtr install, string feature,
+        extern static public MsiError MsiSetFeatureState(Int32 install, string feature,
 			MsiInstallState state);
 
 		/// <summary>The <c>MsiSetInstallLevel</c> function sets the installation level for a full product installation.</summary>
@@ -3590,7 +3590,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiSetInstallLevel(IntPtr install, int level);
+        extern static public MsiError MsiSetInstallLevel(Int32 install, int level);
 
 		/// <summary>The <c>MsiSetMode</c> function sets an internal engine Boolean state.</summary>
 		/// <param name="install">Handle to the installation provided to a DLL custom action or obtained through <see cref="MsiOpenPackage"/>, <see cref="MsiOpenPackageEx"/>, or <see cref="MsiOpenProduct"/>.</param>
@@ -3603,7 +3603,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiSetMode(IntPtr install, MsiRunMode mode,
+        extern static public MsiError MsiSetMode(Int32 install, MsiRunMode mode,
 			bool state);
 
 		/// <summary>The <c>MsiSetProperty</c> function sets the value for an installation property.</summary>
@@ -3618,7 +3618,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiSetProperty(IntPtr install, string name,
+        extern static public MsiError MsiSetProperty(Int32 install, string name,
 			string value);
 
 		/// <summary>The <c>MsiSetTargetPath</c> function sets the full target path for a folder in the Directory table.</summary>
@@ -3633,7 +3633,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiSetTargetPath(IntPtr install, string folder,
+        extern static public MsiError MsiSetTargetPath(Int32 install, string folder,
 			string path);
 
 		/// <summary>The <c>MsiSummaryInfoGetProperty</c> function gets a single property from the summary information.</summary>
@@ -3653,7 +3653,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiSummaryInfoGetProperty(IntPtr summaryInfo,
+        extern static public MsiError MsiSummaryInfoGetProperty(Int32 summaryInfo,
 			uint id, out VariantType type, out int intValue, out FILETIME fileTime,
 			StringBuilder value, ref int valueSize);
 
@@ -3666,7 +3666,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiSummaryInfoGetPropertyCount(IntPtr summaryInfo,
+        extern static public MsiError MsiSummaryInfoGetPropertyCount(Int32 summaryInfo,
 			out int count);
 
 		/// <summary>The <c>MsiSummaryInfoPersist</c> function writes changed summary information back to the summary information stream.</summary>
@@ -3678,7 +3678,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiSummaryInfoPersist(IntPtr summaryInfo);
+        extern static public MsiError MsiSummaryInfoPersist(Int32 summaryInfo);
 
 		/// <summary>The <c>MsiSummaryInfoSetProperty</c> function sets a single summary information property.</summary>
 		/// <param name="summaryInfo">Handle to summary information.</param>
@@ -3698,7 +3698,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiSummaryInfoSetProperty(IntPtr summaryInfo,
+        extern static public MsiError MsiSummaryInfoSetProperty(Int32 summaryInfo,
 			uint id, VariantType type, int intValue, FILETIME fileTime, string value);
 
 		/// <summary>The <c>MsiVerifyDiskSpace</c> function checks to see if sufficient disk space is present for the current installation.</summary>
@@ -3711,7 +3711,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiVerifyDiskSpace(IntPtr install);
+        extern static public MsiError MsiVerifyDiskSpace(Int32 install);
 
 		/// <summary>The <c>MsiViewClose</c> function releases the result set for an executed view. </summary>
 		/// <param name="view">Handle to a view that is set to release.</param>
@@ -3723,7 +3723,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiViewClose(IntPtr view);
+        extern static public MsiError MsiViewClose(Int32 view);
 
 		/// <summary>The <c>MsiViewExecute</c> function executes a SQL view query and supplies any required parameters. The query uses the question mark token to represent parameters as described in SQL Syntax. The values of these parameters are passed in as the corresponding fields of a parameter record.</summary>
 		/// <param name="view">Handle to the view upon which to execute the query.</param>
@@ -3735,7 +3735,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiViewExecute(IntPtr view, IntPtr record);
+        extern static public MsiError MsiViewExecute(Int32 view, Int32 record);
 
 		/// <summary>The <c>MsiViewFetch</c> function fetches the next sequential record from the view. This function returns a handle that should be closed using <see cref="MsiCloseHandle"/>.</summary>
 		/// <param name="view">Handle to the view to fetch from.</param>
@@ -3747,7 +3747,7 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiViewFetch(IntPtr view, ref IntPtr record);
+        extern static public MsiError MsiViewFetch(Int32 view, ref Int32 record);
 
 		/// <summary>The <c>MsiViewGetColumnInfo</c> function returns a record containing column names or definitions. This function returns a handle that should be closed using <see cref="MsiCloseHandle"/>.</summary>
 		/// <param name="view">Handle to the view from which to obtain column information.</param>
@@ -3761,8 +3761,8 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiViewGetColumnInfo(IntPtr view,
-			MsiColInfoType type, out IntPtr record);
+        extern static public MsiError MsiViewGetColumnInfo(Int32 view,
+            MsiColInfoType type, out Int32 record);
 
 		/// <summary>The <c>MsiViewGetError</c> function returns the error that occurred in the <see cref="MsiViewModify"/> function.</summary>
 		/// <param name="view">Handle to the view.</param>
@@ -3771,7 +3771,7 @@ namespace	WindowsInstaller
 		/// <returns>The <see cref="MsiDbError"/></returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiDbError	MsiViewGetError(IntPtr view,
+        extern static public MsiDbError MsiViewGetError(Int32 view,
 			StringBuilder columnNames, ref uint columnNamesSize);
 
 		/// <summary>The MsiViewModify function updates a fetched record.</summary>
@@ -3788,8 +3788,8 @@ namespace	WindowsInstaller
 		/// </returns>
 		/// <remarks>Please refer to the MSDN documentation for more information.</remarks>
 		[DllImport(MSI_LIB, CharSet = CharSet.Auto)]
-		extern static public MsiError	MsiViewModify(IntPtr view, MsiModify mode,
-			IntPtr record);
+        extern static public MsiError MsiViewModify(Int32 view, MsiModify mode,
+            Int32 record);
 		#endregion	Database Functions
 		#endregion	Interop Methods
 	}
