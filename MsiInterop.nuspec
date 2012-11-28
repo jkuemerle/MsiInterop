@@ -7,9 +7,9 @@
     <authors>Ian Mariano</authors>
     <owners>Joe Kuemerle</owners>
     <licenseUrl>http://opensource.org/licenses/LGPL-2.1</licenseUrl>
-    <projectUrl>https://jkuemerle@bitbucket.org/jkuemerle/codefreud</projectUrl>
+    <projectUrl>https://github.com/jkuemerle/MsiInterop</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Msi.dll Interop framework for C#. Original source: http://www.codeproject.com/Articles/5773/Wrapping-the-Windows-Installer-2-0-API</description>
+    <description>Msi.dll Interop framework for C#. Original source: http://www.codeproject.com/Articles/5773/Wrapping-the-Windows-Installer-2-0-API . Package source: https://github.com/jkuemerle/MsiInterop</description>
     <releaseNotes>Initial release</releaseNotes>
     <copyright>Copyright 2012</copyright>
     <tags>Windows Installer MSI Interop</tags>
