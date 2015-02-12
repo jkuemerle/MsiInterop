@@ -3334,7 +3334,7 @@ namespace	WindowsInstaller
 
 		/// <summary>The <c>MsiOpenDatabase</c> function opens a database file for data access. This function returns a handle that should be closed using <see cref="MsiCloseHandle"/>.</summary>
 		/// <param name="path">Specifies the full path or relative path to the database file.</param>
-		/// <param name="persist">Receives the full path to the file or the persistence mode.  You can use one of the constants from <see cref="MsiDbOpenPersistMode"/>.</param>
+		/// <param name="persist">Receives the full path to the file or the persistence mode.  You can use one of the constants from <see cref="MsiPersistMode"/>.</param>
 		/// <param name="handle">Pointer to the location of the returned database handle.</param>
 		/// <returns>
 		/// </returns>
